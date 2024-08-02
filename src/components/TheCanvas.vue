@@ -32,7 +32,7 @@ onMounted(() => {
 function handleMouseDown(point) {
   console.debug('Mouse down on point', point)
   // Create line in lines when mouse down. This line will be updated on mouse move.
-  lines.push(new Line([new Point(point.x, point.y)]))
+  lines.push(new Line([new Point(point.x, point.y)], "lemoji"))
 }
 
 function handleMouseOver(point) {
