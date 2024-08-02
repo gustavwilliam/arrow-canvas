@@ -1,6 +1,5 @@
 <template>
   <TheCanvas>
-
   </TheCanvas>
 </template>
 
