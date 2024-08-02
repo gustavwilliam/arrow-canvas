@@ -22,8 +22,8 @@ class Point {
   }
 
   _diffChar(point) {
-    const dy = point.x - this.x; // Why y=x-x? We do not know, but it works, so don't touch it
-    const dx = point.y - this.y; // Why x=y-y? We do not know, but it works, so don't touch it
+    const dx = point.x - this.x;
+    const dy = point.y - this.y;
     return diffCharMap.find((diffChar) => {
       return diffChar.dx === dx && diffChar.dy === dy;
     }).char;

@@ -3,8 +3,8 @@
     <div class="absolute inset-1 bg-gray-100 rounded-lg z-10">
       <!-- Visual box -->
     </div>
-    <div class="w-full h-full absolute z-20" v-if="linePoints.length > 0">
-      <img :src="point.imageSrc()" v-for="point in linePoints" :key="point" alt="Tileset tile" >
+    <div v-if="linePoints.length > 0">
+      <img class="w-full h-full absolute z-20" :src="point.imageSrc()" v-for="point in linePoints" :key="point" alt="Tileset tile" >
     </div>
   </div>
 </template>
@@ -17,7 +17,10 @@ import Point from "../utils/point"
 const props = defineProps(["index", "cols", "lines"])
 
 const positionPoint = computed(() => {
-  return new Point(Math.floor(props.index / props.cols), props.index % props.cols)
+  return new Point(
+    props.index % props.cols,
+    Math.floor(props.index / props.cols)
+  ) // This (x, y) order because the grid is filled row-by-row
 })
 const refId = computed(() => `square-${positionPoint.value.x}-${positionPoint.value.y}`)
 
@@ -29,6 +32,5 @@ const linePoints = computed(() => {
 })
 
 function handleMouseDown(event) {
-  console.debug("handleMouseDown", point.value)
 }
 </script>
