@@ -20,7 +20,6 @@ import { onMounted, ref, reactive } from 'vue'
 
 const cols = ref()
 const lines = reactive([])
-let dragging = false
 
 window.addEventListener('resize', () => {
   updateCols()
@@ -32,17 +31,15 @@ onMounted(() => {
 
 function handleMouseDown(point) {
   console.debug('Mouse down on point', point)
-  dragging = true
   // Create line in lines when mouse down. This line will be updated on mouse move.
-  lines.push(new Line([point], "lemoji"))
+  lines.push(new Line([new Point(point.x, point.y)]))
 }
 
 function handleMouseOver(point) {
   console.debug('Mouse over point', point)
-  if (dragging) {
-    // Update the last line in lines with the new point
-    lines[lines.length - 1].addPoint(point)
-  }
+  // Update the last line in lines with the new point
+  lines[lines.length - 1].addPoint(new Point(point.x, point.y))
+  console.log('Lines:', lines)
 }
 
 const updateCols = () => {

@@ -33,10 +33,6 @@ class Line {
     this._tileset = tileset;
     this.setPointTilesets();
   }
-
-  crosses(point) {
-    return this.points.some((p) => p.equals(point));
-  }
 }
 
 export default Line;

@@ -3,11 +3,11 @@
     <div class="absolute inset-1 bg-gray-100 rounded-lg z-10">
       <!-- Visual box -->
     </div>
-    <div class="absolute inset-2 rounded-full z-50" @mouseover="handleMouseOver">
+    <div class="absolute -inset-1 rounded-full z-50" @mouseover="handleMouseOver">
       <!-- Mouseover interaction box -->
     </div>
     <div v-if="linePoints.length > 0">
-      <div v-for="point in linePoints" :key="point">
+      <div v-for="[i, point] of linePoints.entries()" :key="refId + i">
         <img class="w-full h-full absolute z-30" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
         <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
       </div>
@@ -33,9 +33,9 @@ const refId = computed(() => `square-${positionPoint.value.x}-${positionPoint.va
 
 const linePoints = computed(() => {
   return props.lines
-    .filter((line) => line.crosses(positionPoint.value))
-    .flatMap((line) => line.points)
-    .filter((point) => point.equals(positionPoint.value))
+    .map(line => line.points)
+    .flat()
+    .filter(point => point.equals(positionPoint.value))
 })
 
 function handleMouseDown(event) {
@@ -45,6 +45,6 @@ function handleMouseDown(event) {
 function handleMouseOver(event) {
   if (event.buttons === 1) {
     emit("squareMouseOver", positionPoint.value)
-  }
+    }
 }
 </script>
