@@ -1,7 +1,7 @@
 class Line {
   constructor(points, tileset = "default") {
     this.points = points;
-    this.tileset = tileset;
+    this._tileset = tileset;
     this.setPointRelations();
     this.setPointTilesets();
   }
@@ -22,6 +22,15 @@ class Line {
   addPoint(point) {
     this.points.push(point);
     this.setPointRelations();
+    this.setPointTilesets();
+  }
+
+  get tileset() {
+    return this._tileset;
+  }
+
+  set tileset(tileset) {
+    this._tileset = tileset;
     this.setPointTilesets();
   }
 
