@@ -19,6 +19,12 @@ class Line {
     });
   }
 
+  addPoint(point) {
+    this.points.push(point);
+    this.setPointRelations();
+    this.setPointTilesets();
+  }
+
   crosses(point) {
     return this.points.some((p) => p.equals(point));
   }

@@ -62,7 +62,6 @@ class Point {
     if (this.after) {
       // Each segment only takes care of its after point. The before point is taken care of by the previous segment.
       const afterDiff = this._diffChar(this.after);
-      console.log(afterDiff);
       if (
         afterDiff === "tr" ||
         afterDiff === "rb" ||
