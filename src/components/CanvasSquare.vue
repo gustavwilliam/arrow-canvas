@@ -5,8 +5,8 @@
     </div>
     <div v-if="linePoints.length > 0">
       <div v-for="point in linePoints" :key="point">
-        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" alt="Tileset tile" >
-        <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
+        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
+        <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
       </div>
     </div>
   </div>
