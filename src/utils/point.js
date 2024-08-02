@@ -27,7 +27,7 @@ class Point {
     const dy = point.y - this.y;
     return diffCharMap.find((diffChar) => {
       return diffChar.dx === dx && diffChar.dy === dy;
-    }).char;
+    })?.char;
   }
 
   _imageName() {

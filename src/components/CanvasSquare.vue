@@ -3,9 +3,12 @@
     <div class="absolute inset-1 bg-gray-100 rounded-lg z-10">
       <!-- Visual box -->
     </div>
+    <div class="absolute inset-2 rounded-full z-50" @mouseover="handleMouseOver">
+      <!-- Mouseover interaction box -->
+    </div>
     <div v-if="linePoints.length > 0">
       <div v-for="point in linePoints" :key="point">
-        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
+        <img class="w-full h-full absolute z-30" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
         <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
       </div>
     </div>
@@ -18,6 +21,7 @@ import { computed, onMounted } from "vue"
 import Point from "../utils/point"
 
 const props = defineProps(["index", "cols", "lines"])
+const emit = defineEmits(["squareMouseDown", "squareMouseOver"])
 
 const positionPoint = computed(() => {
   return new Point(
@@ -35,5 +39,12 @@ const linePoints = computed(() => {
 })
 
 function handleMouseDown(event) {
+  emit("squareMouseDown", positionPoint.value)
+}
+
+function handleMouseOver(event) {
+  if (event.buttons === 1) {
+    emit("squareMouseOver", positionPoint.value)
+  }
 }
 </script>
