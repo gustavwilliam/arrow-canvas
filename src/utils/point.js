@@ -86,13 +86,13 @@ class Point {
   connectorTransform() {
     const afterDiff = this._afterConnector();
     if (afterDiff === "tr") {
-      return "translate-x-4 -translate-y-4";
+      return "translate-x-connector-corner -translate-y-connector-corner";
     } else if (afterDiff === "rb") {
-      return "translate-x-4 translate-y-4";
+      return "translate-x-connector-corner translate-y-connector-corner";
     } else if (afterDiff === "bl") {
-      return "-translate-x-4 translate-y-4";
+      return "-translate-x-connector-corner translate-y-connector-corner";
     } else if (afterDiff === "tl") {
-      return "-translate-x-4 -translate-y-4";
+      return "-translate-x-connector-corner -translate-y-connector-corner";
     }
   }
 }
