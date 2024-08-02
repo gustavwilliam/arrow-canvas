@@ -1,20 +1,25 @@
 <template>
   <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10">
-    <CanvasSquare v-for="(_, i) in 70" :key="i" :index="i" :cols="cols" />
+    <CanvasSquare v-for="(_, i) in 70" :key="i" :index="i" :cols="cols" :lines="lines" />
   </div>
 </template>
 
 <script setup>
 import CanvasSquare from './CanvasSquare.vue'
+import Point from '../utils/point'
+import Line from '../utils/line'
 import { ref } from 'vue'
 
-let cols = ref(5)
+const cols = ref(5)
+const lines = [
+  new Line([new Point(0, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2)]),
+]
 
 window.addEventListener('resize', () => {
   updateCols()
 })
 
 const updateCols = () => {
-  cols.value = window.innerWidth < 640 ? 5 : window.innerWidth < 1024 ? 7 : 10
+  cols.value = window.innerWidth < 768 ? 5 : window.innerWidth < 1024 ? 7 : 10
 }
 </script>
