@@ -4,7 +4,10 @@
       <!-- Visual box -->
     </div>
     <div v-if="linePoints.length > 0">
-      <img class="w-full h-full absolute z-20" :src="point.imageSrc()" v-for="point in linePoints" :key="point" alt="Tileset tile" >
+      <div v-for="point in linePoints" :key="point">
+        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" alt="Tileset tile" >
+        <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
+      </div>
     </div>
   </div>
 </template>

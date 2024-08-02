@@ -30,7 +30,6 @@ class Point {
   }
 
   _imageName() {
-    console.info(this.before, this.after);
     if (this.before && this.after) {
       const beforeDiffChar = this._diffChar(this.before);
       const afterDiffChar = this._diffChar(this.after);
@@ -56,6 +55,45 @@ class Point {
 
   imageSrc() {
     return `/tilesets/default/${this._imageName()}.svg`;
+  }
+
+  _afterConnector() {
+    if (this.after) {
+      // Each segment only takes care of its after point. The before point is taken care of by the previous segment.
+      const afterDiff = this._diffChar(this.after);
+      console.log(afterDiff);
+      if (
+        afterDiff === "tr" ||
+        afterDiff === "rb" ||
+        afterDiff === "bl" ||
+        afterDiff === "tl"
+      ) {
+        return afterDiff;
+      }
+    }
+    return null;
+  }
+
+  hasConnector() {
+    console.log(this._afterConnector());
+    return this._afterConnector() !== null;
+  }
+
+  connectorSrc() {
+    return `/tilesets/default/connector-${this._afterConnector()}.svg`;
+  }
+
+  connectorTransform() {
+    const afterDiff = this._afterConnector();
+    if (afterDiff === "tr") {
+      return "translate-x-4 -translate-y-4";
+    } else if (afterDiff === "rb") {
+      return "translate-x-4 translate-y-4";
+    } else if (afterDiff === "bl") {
+      return "-translate-x-4 translate-y-4";
+    } else if (afterDiff === "tl") {
+      return "-translate-x-4 -translate-y-4";
+    }
   }
 }
 
