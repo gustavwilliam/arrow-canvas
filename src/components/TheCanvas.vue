@@ -16,10 +16,19 @@
 import CanvasSquare from './CanvasSquare.vue'
 import Point from '../utils/point'
 import Line from '../utils/line'
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, watch } from 'vue'
 
 const cols = ref()
 const lines = reactive([])
+
+const props = defineProps(["globalTileset"])
+
+watch(() => props.globalTileset, (newTileset) => {
+  console.debug('Tileset changed to', newTileset);
+  lines.forEach(line => {
+    line.tileset = newTileset
+  })
+})
 
 window.addEventListener('resize', () => {
   updateCols()
@@ -32,14 +41,13 @@ onMounted(() => {
 function handleMouseDown(point) {
   console.debug('Mouse down on point', point)
   // Create line in lines when mouse down. This line will be updated on mouse move.
-  lines.push(new Line([new Point(point.x, point.y)], "lemoji"))
+  lines.push(new Line([new Point(point.x, point.y)], props.globalTileset))
 }
 
 function handleMouseOver(point) {
   console.debug('Mouse over point', point)
   // Update the last line in lines with the new point
   lines[lines.length - 1].addPoint(new Point(point.x, point.y))
-  console.log('Lines:', lines)
 }
 
 const updateCols = () => {

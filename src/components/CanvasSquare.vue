@@ -1,9 +1,9 @@
 <template>
   <div :ref="refId" class="inline-block align-bottom w-full aspect-square relative" @mousedown="handleMouseDown">
-    <div class="absolute inset-1 bg-gray-100 rounded-lg z-10">
+    <div class="absolute inset-1 bg-gray-50 rounded-lg z-10">
       <!-- Visual box -->
     </div>
-    <div class="absolute -inset-1 rounded-full z-50" @mouseover="handleMouseOver">
+    <div class="absolute -inset-1 rounded-full z-40" @mouseover="handleMouseOver">
       <!-- Mouseover interaction box -->
     </div>
     <div v-if="linePoints.length > 0">

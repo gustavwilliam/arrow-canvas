@@ -1,0 +1,18 @@
+<template>
+  <form @submit.prevent="" class="px-5 py-4 border-0 border-r last-of-type:border-0">
+    <h3 class="text-sm font-semibold uppercase mb-2">Tileset</h3>
+    <div class="flex font-semibold gap-2">
+      <TilesetOptionsRadio tileset="default" v-model:activeTileset="tileset">Arrows</TilesetOptionsRadio>
+      <TilesetOptionsRadio tileset="lemoji" v-model:activeTileset="tileset">Lemoji</TilesetOptionsRadio>
+    </div>
+  </form>
+</template>
+
+<script setup>
+import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+import { MenuButton } from '@headlessui/vue'
+import TilesetOptionsRadio from './TilesetOptionsRadio.vue'
+import { ref } from 'vue'
+
+const tileset = defineModel("tileset")
+</script>
