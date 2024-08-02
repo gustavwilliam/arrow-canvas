@@ -8,14 +8,18 @@
 import CanvasSquare from './CanvasSquare.vue'
 import Point from '../utils/point'
 import Line from '../utils/line'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const cols = ref(5)
+const cols = ref()
 const lines = [
   new Line([new Point(0, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2)]),
 ]
 
 window.addEventListener('resize', () => {
+  updateCols()
+})
+
+onMounted(() => {
   updateCols()
 })
 
