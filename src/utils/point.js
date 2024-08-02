@@ -15,6 +15,7 @@ class Point {
     this.y = y;
     this.before = before; // Previous point in line
     this.after = after; // Next point in line
+    this.tileset = "default";
   }
 
   equals(point) {
@@ -54,7 +55,7 @@ class Point {
   }
 
   imageSrc() {
-    return `/tilesets/default/${this._imageName()}.svg`;
+    return `/tilesets/${this.tileset}/${this._imageName()}.svg`;
   }
 
   _afterConnector() {
@@ -75,24 +76,23 @@ class Point {
   }
 
   hasConnector() {
-    console.log(this._afterConnector());
     return this._afterConnector() !== null;
   }
 
   connectorSrc() {
-    return `/tilesets/default/connector-${this._afterConnector()}.svg`;
+    return `/tilesets/${this.tileset}/connector-${this._afterConnector()}.svg`;
   }
 
   connectorTransform() {
     const afterDiff = this._afterConnector();
     if (afterDiff === "tr") {
-      return "translate-x-connector-corner -translate-y-connector-corner";
+      return `translate-x-connector-${this.tileset} -translate-y-connector-${this.tileset}`;
     } else if (afterDiff === "rb") {
-      return "translate-x-connector-corner translate-y-connector-corner";
+      return `translate-x-connector-${this.tileset} translate-y-connector-${this.tileset}`;
     } else if (afterDiff === "bl") {
-      return "-translate-x-connector-corner translate-y-connector-corner";
+      return `-translate-x-connector-${this.tileset} translate-y-connector-${this.tileset}`;
     } else if (afterDiff === "tl") {
-      return "-translate-x-connector-corner -translate-y-connector-corner";
+      return `-translate-x-connector-${this.tileset} -translate-y-connector-${this.tileset}`;
     }
   }
 }

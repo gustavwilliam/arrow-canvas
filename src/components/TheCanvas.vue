@@ -12,9 +12,9 @@ import { onMounted, ref } from 'vue'
 
 const cols = ref()
 const lines = [
-  new Line([new Point(0, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2)]),
-  new Line([new Point(1, 1), new Point(2,2), new Point(3,3), new Point(3,2), new Point(3,1)]),
-  new Line([new Point(2, 0), new Point(3,0), new Point(2,0)]),
+  new Line([new Point(0, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2)], "lemoji"),
+  new Line([new Point(0, 0), new Point(1, 1), new Point(2,2), new Point(3,3), new Point(3,2), new Point(3,1)], "lemoji"),
+  new Line([new Point(2, 0), new Point(3,0), new Point(4,1), new Point(5,1)]),
 ]
 
 window.addEventListener('resize', () => {

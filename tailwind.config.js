@@ -5,9 +5,15 @@ export default {
   theme: {
     extend: {
       translate: {
-        "connector-corner": "11%",
+        "connector-default": "11%",
+        "connector-lemoji": "45%",
       },
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /-?translate-(x|y)-connector-.+/,
+    },
+  ],
 };
