@@ -1,4 +1,5 @@
 <template>
+  <div v-if="selectedLine" class="absolute inset-0 bg-gray-200 opacity-70 z-30"></div>
   <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none" :class="{
     'hover:cursor-crosshair': tool === 'draw',
     'hover:cursor-default': tool === 'select',

@@ -1,22 +1,25 @@
 <template>
   <div :ref="refId" class="inline-block align-bottom w-full aspect-square relative" @mousedown="handleMouseDown">
+    <div v-if="intersectingLines.length > 0">
+      <div
+        v-for="[i, [point, line]] of intersectingLines.entries()"
+        :key="refId + i"
+        class="absolute inset-0 z-20"
+        :class="{
+          'z-40': selectedLine && selectedLine === line,
+        }"
+      >
+        <div class="relative">
+          <img class="w-full h-full" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
+          <img :class="'w-full h-full absolute inset-0 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
+        </div>
+      </div>
+    </div>
     <div class="absolute inset-1 bg-gray-50 rounded-lg z-10">
       <!-- Visual box -->
     </div>
     <div class="absolute -inset-1 rounded-full z-40" @mouseover="handleMouseOver">
       <!-- Mouseover interaction box -->
-    </div>
-    <div v-if="intersectingLines.length > 0">
-      <div
-        v-for="[i, [point, line]] of intersectingLines.entries()"
-        :key="refId + i"
-        :class="{
-          'opacity-50': selectedLine && selectedLine !== line,
-        }"
-      >
-        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
-        <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
-      </div>
     </div>
   </div>
 </template>
