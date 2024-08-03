@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none">
+  <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none hover:cursor-crosshair">
     <CanvasSquare
       v-for="(_, i) in 70"
       :key="i"
