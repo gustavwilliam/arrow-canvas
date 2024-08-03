@@ -6,7 +6,7 @@
         :key="refId + i"
         class="absolute inset-0 z-20"
         :class="{
-          'z-40': selectedLine && selectedLine === line,
+          'z-40': selectionStore.line && selectionStore.line === line,
         }"
       >
         <div class="relative">
@@ -25,12 +25,13 @@
 </template>
 
 <script setup>
-
 import { computed, onMounted } from "vue"
 import Point from "../utils/point"
+import { useSelectionStore } from '../stores/selection'
 
-const props = defineProps(["index", "cols", "lines", "selectedLine"])
+const props = defineProps(["index", "cols", "lines"])
 const emit = defineEmits(["squareMouseDown", "squareMouseOver"])
+const selectionStore = useSelectionStore()
 
 const positionPoint = computed(() => {
   return new Point(

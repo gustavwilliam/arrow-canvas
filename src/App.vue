@@ -11,14 +11,14 @@
     @undo="undo"
     @selectTool="selectTool"
   />
-  <TheSelectionBar
-  />
+  <TheSelectionBar v-if="selectionStore.line"/>
 </template>
 
 <script setup>
 import TheCanvas from './components/TheCanvas.vue'
 import TheOptions from './components/TheOptions.vue'
 import TheSelectionBar from './components/TheSelectionBar.vue'
+import { useSelectionStore } from './stores/selection'
 import { reactive, ref } from 'vue'
 import Line from './utils/line'
 import Point from './utils/point'
@@ -26,6 +26,7 @@ import Point from './utils/point'
 const tileset = ref('default')
 const selectedTool = ref('draw')
 const lines = reactive([])
+const selectionStore = useSelectionStore()
 
 const updateTileset = (newTileset) => {
   tileset.value = newTileset

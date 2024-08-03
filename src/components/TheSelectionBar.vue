@@ -1,7 +1,7 @@
 <template>
   <div class="absolute top-5 left-1/2 overflow-hidden -translate-x-1/2 bg-white border rounded-lg shadow-md z-50">
     <div class="w-full h-full flex relative">
-      <ButtonOption name="Delete" @click="emit('selectionDelete')"><TrashIcon/></ButtonOption>
+      <ButtonOption name="Delete" @click="selectionStore.deleteLine"><TrashIcon/></ButtonOption>
       <ToggleOptions>
         <ToggleOptionRadio group="selection-tileset" value="default" name="Arrows" v-model:activeItem="tileset">
           <div class="-mx-2 size-5 flex">
@@ -24,12 +24,10 @@
 import ToggleOptions from './ToggleOptions.vue'
 import ToggleOptionRadio from './ToggleOptionRadio.vue'
 import ButtonOption from './ButtonOption.vue'
+import { useSelectionStore } from '../stores/selection'
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { ref, watch } from 'vue'
 
 const tileset = ref('default')
-
-watch(tileset, (newTileset) => {
-  // Update tileset for selection
-})
+const selectionStore = useSelectionStore()  
 </script>

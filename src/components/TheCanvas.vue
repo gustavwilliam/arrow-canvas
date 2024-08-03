@@ -1,5 +1,5 @@
 <template>
-  <div v-if="selectedLine" class="absolute inset-0 bg-gray-200 opacity-70 z-30"></div>
+  <div v-if="selectionStore.line" class="absolute inset-0 bg-gray-200 opacity-70 z-30"></div>
   <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none" :class="{
     'hover:cursor-crosshair': tool === 'draw',
     'hover:cursor-default': tool === 'select',
@@ -10,7 +10,6 @@
       :index="i"
       :cols="cols"
       :lines="lines"
-      :selectedLine="selectedLine"
       @squareMouseDown="handleMouseDown"
       @squareMouseOver="handleMouseOver"
     />
@@ -22,12 +21,12 @@ import CanvasSquare from './CanvasSquare.vue'
 import Point from '../utils/point'
 import Line from '../utils/line'
 import { onMounted, ref, reactive, watch } from 'vue'
+import { useSelectionStore } from '../stores/selection'
 
 const props = defineProps(["lines", "tool"])
 const emit = defineEmits(["addLine", "addPointToLine"])
 const cols = ref()
-const selectedLine = ref(null)
-const selectionPoint = ref(null)
+const selectionStore = useSelectionStore()
 
 window.addEventListener('resize', () => {
   updateCols()
@@ -35,7 +34,7 @@ window.addEventListener('resize', () => {
 
 watch(() => props.tool, (changedFrom, changedTo) => {
   if (changedTo === 'select') {
-    selectedLine.value = null
+    selectionStore.line = null
   }
 })
 
@@ -56,25 +55,25 @@ const _getPossibleSelections = (point) => {
 const selectLine = (point) => {
   const possibleSelections = _getPossibleSelections(point)
     if (possibleSelections.length === 0) {
-      selectedLine.value = null
-      selectionPoint.value = null
+      selectionStore.line = null
+      selectionStore.point = null
       return
     }
-    if (selectionPoint.value && selectionPoint.value.equals(point)) {
+    if (selectionStore.point && selectionStore.point.equals(point)) {
       // If the same point is clicked again, select the next point in possible selections
       // For example, if there are 3 lines intersecting at the same point, clicking the point 3 times will select each line in turn
-      const currentIndex = possibleSelections.findIndex(line => line === selectedLine.value)
+      const currentIndex = possibleSelections.findIndex(line => line === selectionStore.line)
       if (currentIndex === possibleSelections.length - 1) {
         // At the last click, the selection will be cleared
-        selectedLine.value = null
-        selectionPoint.value = null
+        selectionStore.line = null
+        selectionStore.point = null
         return
       }
-      selectedLine.value = possibleSelections[currentIndex + 1]
+      selectionStore.line = possibleSelections[currentIndex + 1]
       return
     }
-    selectedLine.value = possibleSelections[0]
-    selectionPoint.value = point
+    selectionStore.line = possibleSelections[0]
+    selectionStore.point = point
 }
 
 function handleMouseDown(point) {
