@@ -29,6 +29,7 @@ const lines = reactive([])
 const updateTileset = (newTileset) => {
   console.debug('Tileset changed to', newTileset);
   tileset.value = newTileset
+  selectTool('draw')
 }
 
 const selectTool = (newTool) => {
