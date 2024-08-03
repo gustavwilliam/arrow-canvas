@@ -25,6 +25,7 @@ const lines = reactive([])
 
 const updateTileset = (newTileset) => {
   console.debug('Tileset changed to', newTileset);
+  tileset.value = newTileset
   lines.forEach(line => {
     line.tileset = newTileset
   })
