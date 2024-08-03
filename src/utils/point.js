@@ -22,6 +22,10 @@ class Point {
     return this.x === point.x && this.y === point.y;
   }
 
+  isAdjacent(point) {
+    return Math.abs(this.x - point.x) <= 1 && Math.abs(this.y - point.y) <= 1;
+  }
+
   _diffChar(point) {
     const dx = point.x - this.x;
     const dy = point.y - this.y;

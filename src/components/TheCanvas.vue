@@ -39,6 +39,16 @@ function handleMouseDown(point) {
 }
 
 function handleMouseOver(point) {
+  const lastLine = props.lines[props.lines.length - 1]
+  if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
+    // If new point is the same as last point in last line in lines, ignore
+    return
+  }
+  if (lastLine && lastLine.points.length > 0 && !lastLine.points[lastLine.points.length - 1].isAdjacent(point)) {
+    // If last point in last line is more than one square away, create a new line
+    emit('addLine', point)
+    return
+  }
   emit('addPointToLine', point)
 }
 </script>
