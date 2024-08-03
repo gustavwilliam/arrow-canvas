@@ -27,6 +27,7 @@ const props = defineProps(["lines", "tool"])
 const emit = defineEmits(["addLine", "addPointToLine"])
 const cols = ref()
 const selectedLine = ref(null)
+const selectionPoint = ref(null)
 
 window.addEventListener('resize', () => {
   updateCols()
@@ -46,19 +47,42 @@ const updateCols = () => {
   cols.value = window.innerWidth < 768 ? 5 : window.innerWidth < 1024 ? 7 : 10
 }
 
+const _getPossibleSelections = (point) => {
+  const lines = props.lines?.toReversed()  // Reverse to get the topmost line
+    .filter(line => line.intersects(point))
+  return lines || []
+}
+
+const selectLine = (point) => {
+  const possibleSelections = _getPossibleSelections(point)
+    if (possibleSelections.length === 0) {
+      selectedLine.value = null
+      selectionPoint.value = null
+      return
+    }
+    if (selectionPoint.value && selectionPoint.value.equals(point)) {
+      // If the same point is clicked again, select the next point in possible selections
+      // For example, if there are 3 lines intersecting at the same point, clicking the point 3 times will select each line in turn
+      const currentIndex = possibleSelections.findIndex(line => line === selectedLine.value)
+      if (currentIndex === possibleSelections.length - 1) {
+        // At the last click, the selection will be cleared
+        selectedLine.value = null
+        selectionPoint.value = null
+        return
+      }
+      selectedLine.value = possibleSelections[currentIndex + 1]
+      return
+    }
+    selectedLine.value = possibleSelections[0]
+    selectionPoint.value = point
+}
+
 function handleMouseDown(point) {
   if (props.tool === 'draw') {
     emit('addLine', point)
   }
   if (props.tool === 'select') {
-    console.log('Selecting', point)
-    const newSelection = props.lines
-      ?.toReversed()  // Reverse to get the topmost line
-      .find(line => line.points.some(p => p.equals(point)))
-      || null  // Deselect if no line is found
-      selectedLine.value = newSelection === selectedLine.value ? null : newSelection
-    if (!selectedLine.value) return
-    console.log('Selected line', selectedLine)
+    selectLine(point)
   }
 }
 
