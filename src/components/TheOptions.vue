@@ -4,7 +4,7 @@
         <ButtonOption name="Undo" @click="emit('undo')"><ArrowUturnLeftIcon /></ButtonOption>
         <ButtonOption name="Clear" @click="emit('clearCanvas')"><TrashIcon /></ButtonOption>
         <ToggleOptions>
-          <ToggleOptionRadio group="tool" value="edit" name="Edit" v-model:activeItem="tool"><PencilIcon /></ToggleOptionRadio>
+          <ToggleOptionRadio group="tool" value="draw" name="Draw" v-model:activeItem="tool"><PencilIcon /></ToggleOptionRadio>
           <ToggleOptionRadio group="tool" value="select" name="Select" v-model:activeItem="tool"><CursorArrowRaysIcon /></ToggleOptionRadio>
         </ToggleOptions>
         <ToggleOptions>
@@ -33,7 +33,7 @@ import { ref, watch } from 'vue'
 import { ArrowUturnLeftIcon, TrashIcon, PencilIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
 
 const tileset = ref('default')
-const tool = ref('edit')
+const tool = ref('draw')
 
 const emit = defineEmits(['updateTileset', "clearCanvas", "undo", "selectTool"])
 

@@ -1,5 +1,8 @@
 <template>
-  <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none hover:cursor-crosshair">
+  <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none" :class="{
+    'hover:cursor-crosshair': tool === 'draw',
+    'hover:cursor-default': tool === 'select',
+  }">
     <CanvasSquare
       v-for="(_, i) in 70"
       :key="i"
@@ -18,7 +21,7 @@ import Point from '../utils/point'
 import Line from '../utils/line'
 import { onMounted, ref, reactive, watch } from 'vue'
 
-const props = defineProps(["lines"])
+const props = defineProps(["lines", "tool"])
 const emit = defineEmits(["addLine", "addPointToLine"])
 const cols = ref()
 

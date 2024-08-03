@@ -1,6 +1,7 @@
 <template>
   <TheCanvas
     :lines="lines"
+    :tool="selectedTool"
     @addLine="addLine"
     @addPointToLine="addPointToLine"
   >
