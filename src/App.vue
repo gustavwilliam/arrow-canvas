@@ -9,6 +9,7 @@
     @updateTileset="updateTileset"
     @clearCanvas="clearCanvas"
     @undo="undo"
+    @selectTool="selectTool"
   >
   </TheOptions>
 </template>
@@ -21,11 +22,17 @@ import Line from './utils/line'
 import Point from './utils/point'
 
 const tileset = ref('default')
+const selectedTool = ref('draw')
 const lines = reactive([])
 
 const updateTileset = (newTileset) => {
   console.debug('Tileset changed to', newTileset);
   tileset.value = newTileset
+}
+
+const selectTool = (newTool) => {
+  console.debug('Tool changed to', newTool);
+  selectedTool.value = newTool
 }
 
 const addLine = (point) => {

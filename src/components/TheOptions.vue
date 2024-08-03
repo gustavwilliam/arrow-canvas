@@ -9,6 +9,7 @@
           <TrashIcon class="w-6 h-6" />
           Clear
         </button>
+        <ToolOptions v-model:tool="tool"></ToolOptions>
         <TilesetOptions v-model:tileset="tileset"></TilesetOptions>
       </div>
     </div>
@@ -16,14 +17,19 @@
 
 <script setup>
 import TilesetOptions from './TilesetOptions.vue'
+import ToolOptions from './ToolOptions.vue'
 import { ref, watch } from 'vue'
 import { ArrowUturnLeftIcon, TrashIcon } from '@heroicons/vue/24/outline'
 
 const tileset = ref('default')
+const tool = ref('edit')
 
-const emit = defineEmits(['updateTileset', "clearCanvas", "undo"])
+const emit = defineEmits(['updateTileset', "clearCanvas", "undo", "selectTool"])
 
 watch(tileset, (newTileset) => {
   emit('updateTileset', newTileset)
+})
+watch(tool, (newTool) => {
+  emit('selectTool', newTool)
 })
 </script>

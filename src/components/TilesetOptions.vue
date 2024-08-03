@@ -9,10 +9,7 @@
 </template>
 
 <script setup>
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { MenuButton } from '@headlessui/vue'
 import TilesetOptionsRadio from './TilesetOptionsRadio.vue'
-import { ref } from 'vue'
 
 const tileset = defineModel("tileset")
 </script>
