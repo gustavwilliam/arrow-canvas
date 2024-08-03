@@ -6,9 +6,15 @@
     <div class="absolute -inset-1 rounded-full z-40" @mouseover="handleMouseOver">
       <!-- Mouseover interaction box -->
     </div>
-    <div v-if="linePoints.length > 0">
-      <div v-for="[i, point] of linePoints.entries()" :key="refId + i">
-        <img class="w-full h-full absolute z-30" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
+    <div v-if="intersectingLines.length > 0">
+      <div
+        v-for="[i, [point, line]] of intersectingLines.entries()"
+        :key="refId + i"
+        :class="{
+          'opacity-50': selectedLine && selectedLine !== line,
+        }"
+      >
+        <img class="w-full h-full absolute z-20" :src="point.imageSrc()" draggable="false" alt="Tileset tile" >
         <img :class="'w-full h-full absolute z-20 '+point.connectorTransform()" draggable="false" :src="point.connectorSrc()" v-if="point.hasConnector()" alt="Line connector" >
       </div>
     </div>
@@ -20,7 +26,7 @@
 import { computed, onMounted } from "vue"
 import Point from "../utils/point"
 
-const props = defineProps(["index", "cols", "lines"])
+const props = defineProps(["index", "cols", "lines", "selectedLine"])
 const emit = defineEmits(["squareMouseDown", "squareMouseOver"])
 
 const positionPoint = computed(() => {
@@ -31,11 +37,15 @@ const positionPoint = computed(() => {
 })
 const refId = computed(() => `square-${positionPoint.value.x}-${positionPoint.value.y}`)
 
-const linePoints = computed(() => {
-  return props.lines
-    .map(line => line.points)
-    .flat()
-    .filter(point => point.equals(positionPoint.value))
+const intersectingLines = computed(() => {
+  const intersecting = []
+  props.lines.forEach(line => {
+    const points = line.points.filter(p => p.equals(positionPoint.value))
+    points.forEach(point => {
+      intersecting.push([point, line])
+    })
+  })
+  return intersecting
 })
 
 function handleMouseDown(event) {

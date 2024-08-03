@@ -9,6 +9,7 @@
       :index="i"
       :cols="cols"
       :lines="lines"
+      :selectedLine="selectedLine"
       @squareMouseDown="handleMouseDown"
       @squareMouseOver="handleMouseOver"
     />
@@ -24,9 +25,16 @@ import { onMounted, ref, reactive, watch } from 'vue'
 const props = defineProps(["lines", "tool"])
 const emit = defineEmits(["addLine", "addPointToLine"])
 const cols = ref()
+const selectedLine = ref(null)
 
 window.addEventListener('resize', () => {
   updateCols()
+})
+
+watch(() => props.tool, (changedFrom, changedTo) => {
+  if (changedTo === 'select') {
+    selectedLine.value = null
+  }
 })
 
 onMounted(() => {
@@ -43,12 +51,19 @@ function handleMouseDown(point) {
   }
   if (props.tool === 'select') {
     console.log('Selecting', point)
+    const newSelection = props.lines
+      ?.toReversed()  // Reverse to get the topmost line
+      .find(line => line.points.some(p => p.equals(point)))
+      || null  // Deselect if no line is found
+      selectedLine.value = newSelection === selectedLine.value ? null : newSelection
+    if (!selectedLine.value) return
+    console.log('Selected line', selectedLine)
   }
 }
 
 function handleMouseOver(point) {
   if (props.tool === 'select') return
-  
+
   const lastLine = props.lines[props.lines.length - 1]
   if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
     // If new point is the same as last point in last line in lines, ignore

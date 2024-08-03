@@ -6,6 +6,10 @@ class Line {
     this.setPointTilesets();
   }
 
+  intersects(point) {
+    return this.points.some((p) => p.x === point.x && p.y === point.y);
+  }
+
   setPointRelations() {
     this.points.forEach((point, index) => {
       point.before = this.points[index - 1] || null;
