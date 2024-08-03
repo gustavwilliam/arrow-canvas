@@ -6,7 +6,7 @@ export default {
     extend: {
       translate: {
         "connector-default": "11%",
-        "connector-lemoji": "45%",
+        "connector-lemoji": "25%",
       },
     },
   },
