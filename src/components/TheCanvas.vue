@@ -38,10 +38,17 @@ const updateCols = () => {
 }
 
 function handleMouseDown(point) {
-  emit('addLine', point)
+  if (props.tool === 'draw') {
+    emit('addLine', point)
+  }
+  if (props.tool === 'select') {
+    console.log('Selecting', point)
+  }
 }
 
 function handleMouseOver(point) {
+  if (props.tool === 'select') return
+  
   const lastLine = props.lines[props.lines.length - 1]
   if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
     // If new point is the same as last point in last line in lines, ignore
