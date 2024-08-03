@@ -4,20 +4,21 @@
     :tool="selectedTool"
     @addLine="addLine"
     @addPointToLine="addPointToLine"
-  >
-  </TheCanvas>
+  />
   <TheOptions
     @updateTileset="updateTileset"
     @clearCanvas="clearCanvas"
     @undo="undo"
     @selectTool="selectTool"
-  >
-  </TheOptions>
+  />
+  <TheSelectionBar
+  />
 </template>
 
 <script setup>
 import TheCanvas from './components/TheCanvas.vue'
 import TheOptions from './components/TheOptions.vue'
+import TheSelectionBar from './components/TheSelectionBar.vue'
 import { reactive, ref } from 'vue'
 import Line from './utils/line'
 import Point from './utils/point'
