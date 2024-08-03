@@ -1,6 +1,7 @@
 <template>
   <div class="flex py-2 pl-2 pr-4" :class="{
-      'bg-gray-100 rounded-md': activeTileset === tileset
+      ' bg-gray-100 hover:bg-gray-100 rounded-md': activeTileset === tileset,
+      'hover:bg-gray-50': activeTileset !== tileset
     }">
     <input class="appearance-none" name="tileset" :id="`tileset-${tileset}`" type="radio" :value="tileset" v-model="activeTileset">
     <label :for="`tileset-${tileset}`" class="flex items-center">

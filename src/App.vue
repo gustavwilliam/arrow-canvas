@@ -5,7 +5,11 @@
     @addPointToLine="addPointToLine"
   >
   </TheCanvas>
-  <TheOptions @updateTileset="updateTileset">
+  <TheOptions
+    @updateTileset="updateTileset"
+    @clearCanvas="clearCanvas"
+    @undo="undo"
+  >
   </TheOptions>
 </template>
 
@@ -38,5 +42,13 @@ const addPointToLine = (point) => {
   lastLine.addPoint(
     new Point(point.x, point.y)
   )
+}
+
+const clearCanvas = () => {
+  lines.length = 0
+}
+
+const undo = () => {
+  lines.pop()
 }
 </script>

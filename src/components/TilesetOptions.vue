@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="" class="px-5 py-4 border-0 border-r last-of-type:border-0">
+  <form @submit.prevent="" class="px-5 py-4 border-r last:border-0">
     <h3 class="text-sm font-semibold uppercase mb-2">Tileset</h3>
     <div class="flex font-semibold gap-2">
       <TilesetOptionsRadio tileset="default" v-model:activeTileset="tileset">Arrows</TilesetOptionsRadio>
