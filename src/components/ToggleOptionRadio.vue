@@ -1,9 +1,11 @@
 <template>
     <label
-      class="flex flex-col items-center justify-center p-4 h-full" 
+      class="flex flex-col items-center justify-center p-4 h-full rounded-md" 
       :class="{
-        ' bg-gray-100 hover:bg-gray-100 rounded-md': activeItem === value,
-        'hover:bg-gray-50': activeItem !== value
+        'bg-gray-200 hover:bg-gray-200': activeItem === value && invertedColor,
+        'bg-gray-100 hover:bg-gray-200': activeItem !== value && invertedColor,
+        'bg-gray-100 hover:bg-gray-100': activeItem === value,
+        'hover:bg-gray-100': activeItem !== value,
       }"
       :for="`item-${group}-${value}`"
     >
@@ -25,7 +27,7 @@
 </template>
 
 <script setup>
-defineProps(["group", "name", "value"])
+defineProps(["group", "name", "value", "invertedColor"])
 
 const activeItem = defineModel("activeItem")
 </script>
