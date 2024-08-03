@@ -7,7 +7,7 @@
     <label :for="`tileset-${tileset}`" class="flex items-center">
       <img :src="`/tilesets/${tileset}/start-rr.svg`" class="w-8 h-8" alt="Tileset emoji left">
       <img :src="`/tilesets/${tileset}/end-ll.svg`" class="w-8 h-8" alt="Tileset emoji right">
-      <span class="ml-2">
+      <span class="ml-2 min-w-28">
         <slot></slot>
       </span>
     </label>
