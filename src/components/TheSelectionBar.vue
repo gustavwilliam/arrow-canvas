@@ -3,13 +3,13 @@
     <div class="w-full h-full flex relative">
       <ButtonOption name="Delete" @click="selectionStore.deleteLine"><TrashIcon/></ButtonOption>
       <ToggleOptions>
-        <ToggleOptionRadio group="selection-tileset" value="default" name="Arrows" v-model:activeItem="tileset">
+        <ToggleOptionRadio group="selection-tileset" value="default" name="Arrows" v-model:activeItem="selectionStore.line.tileset">
           <div class="-mx-2 size-5 flex">
             <img src="/tilesets/default/start-rr.svg" alt="Tileset start">
             <img src="/tilesets/default/end-ll.svg" alt="Tileset end">
           </div>
         </ToggleOptionRadio>
-        <ToggleOptionRadio group="selection-tileset" value="lemoji" name="Lemoji" v-model:activeItem="tileset">
+        <ToggleOptionRadio group="selection-tileset" value="lemoji" name="Lemoji" v-model:activeItem="selectionStore.line.tileset">
           <div class="-mx-6 -mt-1 size-8 flex">
             <img src="/tilesets/lemoji/start-rr.svg" alt="Tileset start">
             <img src="/tilesets/lemoji/end-ll.svg" alt="Tileset end">
@@ -28,6 +28,5 @@ import { useSelectionStore } from '../stores/selection'
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { ref, watch } from 'vue'
 
-const tileset = ref('default')
 const selectionStore = useSelectionStore()  
 </script>
