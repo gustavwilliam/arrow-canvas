@@ -1,8 +1,6 @@
 <template>
   <TheCanvas />
-  <TheOptions
-    @clearCanvas="clearCanvas"
-  />
+  <TheOptions />
   <TheSelectionBar v-if="selectionStore.line"/>
 </template>
 
@@ -17,8 +15,4 @@ import Point from './utils/point'
 
 const selectionStore = useSelectionStore()
 const stateStore = useStateStore()
-
-const clearCanvas = () => {
-  stateStore.clearLines()
-}
 </script>
