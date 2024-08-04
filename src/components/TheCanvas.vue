@@ -1,15 +1,14 @@
 <template>
   <div v-if="selectionStore.line" class="absolute inset-0 bg-gray-200 opacity-70 z-30"></div>
   <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none" :class="{
-    'hover:cursor-crosshair': tool === 'draw',
-    'hover:cursor-default': tool === 'select',
+    'hover:cursor-crosshair': stateStore.getTool().value === 'draw',
+    'hover:cursor-default': stateStore.getTool().value === 'select',
   }">
     <CanvasSquare
       v-for="(_, i) in 70"
       :key="i"
       :index="i"
       :cols="cols"
-      :lines="lines"
       @squareMouseDown="handleMouseDown"
       @squareMouseOver="handleMouseOver"
     />
@@ -22,20 +21,14 @@ import Point from '../utils/point'
 import Line from '../utils/line'
 import { onMounted, ref, reactive, watch } from 'vue'
 import { useSelectionStore } from '../stores/selection'
+import { useStateStore } from '../stores/state'
 
-const props = defineProps(["lines", "tool"])
-const emit = defineEmits(["addLine", "addPointToLine"])
 const cols = ref()
 const selectionStore = useSelectionStore()
+const stateStore = useStateStore()
 
 window.addEventListener('resize', () => {
   updateCols()
-})
-
-watch(() => props.tool, (changedFrom, changedTo) => {
-  if (changedTo === 'select') {
-    selectionStore.line = null
-  }
 })
 
 onMounted(() => {
@@ -47,7 +40,7 @@ const updateCols = () => {
 }
 
 const _getPossibleSelections = (point) => {
-  const lines = props.lines?.toReversed()  // Reverse to get the topmost line
+  const lines = stateStore.lines?.toReversed()  // Reverse to get the topmost line
     .filter(line => line.intersects(point))
   return lines || []
 }
@@ -77,27 +70,28 @@ const selectLine = (point) => {
 }
 
 function handleMouseDown(point) {
-  if (props.tool === 'draw') {
-    emit('addLine', point)
+  if (stateStore.getTool().value === 'draw') {
+    stateStore.addLineFromPoint(point)
   }
-  if (props.tool === 'select') {
+  if (stateStore.getTool().value === 'select') {
     selectLine(point)
   }
 }
 
 function handleMouseOver(point) {
-  if (props.tool === 'select') return
+  if (stateStore.getTool() === 'select') return
 
-  const lastLine = props.lines[props.lines.length - 1]
+  const lastLine = stateStore.lines[stateStore.lines.length - 1]
   if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
     // If new point is the same as last point in last line in lines, ignore
     return
   }
   if (lastLine && lastLine.points.length > 0 && !lastLine.points[lastLine.points.length - 1].isAdjacent(point)) {
     // If last point in last line is more than one square away, create a new line
-    emit('addLine', point)
+    console.log(lastLine)
+    stateStore.addLineFromPoint(point)
     return
   }
-  emit('addPointToLine', point)
+  stateStore.lastLine().addPoint(new Point(point.x, point.y))
 }
 </script>

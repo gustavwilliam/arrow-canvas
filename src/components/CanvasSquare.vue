@@ -28,10 +28,12 @@
 import { computed, onMounted } from "vue"
 import Point from "../utils/point"
 import { useSelectionStore } from '../stores/selection'
+import { useStateStore } from '../stores/state'
 
-const props = defineProps(["index", "cols", "lines"])
+const props = defineProps(["index", "cols"])
 const emit = defineEmits(["squareMouseDown", "squareMouseOver"])
 const selectionStore = useSelectionStore()
+const stateStore = useStateStore()
 
 const positionPoint = computed(() => {
   return new Point(
@@ -43,7 +45,7 @@ const refId = computed(() => `square-${positionPoint.value.x}-${positionPoint.va
 
 const intersectingLines = computed(() => {
   const intersecting = []
-  props.lines.forEach(line => {
+  stateStore.lines.forEach(line => {
     const points = line.points.filter(p => p.equals(positionPoint.value))
     points.forEach(point => {
       intersecting.push([point, line])
