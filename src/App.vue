@@ -1,13 +1,15 @@
 <template>
-  <TheCanvas />
-  <TheOptions />
+  <div class="h-full w-full flex flex-col md:flex-row">
+    <ToolPicker />
+    <TheCanvas />
+  </div>
   <TheSelectionBar v-if="selectionStore.line"/>
 </template>
 
 <script setup>
 import TheCanvas from './components/TheCanvas.vue'
-import TheOptions from './components/TheOptions.vue'
 import TheSelectionBar from './components/TheSelectionBar.vue'
+import ToolPicker from './components/ToolPicker/ToolPicker.vue'
 import { useSelectionStore } from './stores/selection'
 import { useStateStore } from './stores/state'
 import Line from './utils/line'

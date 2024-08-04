@@ -1,0 +1,27 @@
+<template>
+  <label
+    class="rounded-md w-full aspect-square flex items-center justify-center p-1"
+    :class="{
+      'bg-gray-200 hover:bg-gray-200': activeItem === value,
+      'hover:bg-gray-200': activeItem !== value,
+    }"
+  >
+    <input
+      class="appearance-none"
+      :name="group"
+      :id="`item-${group}-${value}`"
+      type="radio"
+      :value="value"
+      v-model="activeItem"
+    >
+    <div class="w-full h-full select-none" draggable="false">
+      <slot></slot>
+    </div>
+  </label>
+</template>
+
+<script setup>
+defineProps(["group", "value"])
+
+const activeItem = defineModel("activeItem")
+</script>

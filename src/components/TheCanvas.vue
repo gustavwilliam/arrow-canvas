@@ -5,7 +5,7 @@
     'hover:cursor-default': stateStore.tool.value === 'select',
   }">
     <CanvasSquare
-      v-for="(_, i) in 70"
+      v-for="(_, i) in 140"
       :key="i"
       :index="i"
       :cols="cols"
