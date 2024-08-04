@@ -5,7 +5,6 @@ import Point from "../utils/point";
 import { useSelectionStore } from "./selection";
 
 export const useStateStore = defineStore("state", () => {
-  const tileset = ref("arrows");
   const selectionStore = useSelectionStore();
   const history = reactive([
     [], // No lines at start
@@ -19,6 +18,14 @@ export const useStateStore = defineStore("state", () => {
       if (value === "draw") {
         selectionStore.clearSelection();
       }
+    },
+  });
+  const _tileset = ref("arrows");
+  const tileset = computed({
+    get: () => _tileset.value,
+    set: (value) => {
+      _tileset.value = value;
+      tool.value = "draw";
     },
   });
 
