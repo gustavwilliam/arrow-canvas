@@ -19,9 +19,13 @@
         <ToggleOptionRadio group="tool" value="draw" name="Draw" v-model:activeItem="tool"><PencilIcon /></ToggleOptionRadio>
         <ToggleOptionRadio group="tool" value="select" name="Select" v-model:activeItem="tool"><CursorArrowRaysIcon /></ToggleOptionRadio>
       </ToggleOptions>
-      <ButtonOption name="Undo" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ButtonOption>
-      <ButtonOption name="Redo" @click="stateStore.redo" :disabled="!stateStore.canRedo"><ArrowUturnRightIcon /></ButtonOption>
-      <ButtonOption name="Clear" @click="stateStore.clearCanvas"><TrashIcon /></ButtonOption>
+      <OptionGroup>
+        <ButtonOption name="Undo" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ButtonOption>
+        <ButtonOption name="Redo" @click="stateStore.redo" :disabled="!stateStore.canRedo"><ArrowUturnRightIcon /></ButtonOption>
+      </OptionGroup>
+      <OptionGroup>
+        <ButtonOption name="Clear" @click="stateStore.clearCanvas"><TrashIcon /></ButtonOption>
+      </OptionGroup>
     </div>
   </div>
 </template>
@@ -29,6 +33,7 @@
 <script setup>
 import ToggleOptions from './ToggleOptions.vue'
 import ToggleOptionRadio from './ToggleOptionRadio.vue'
+import OptionGroup from './OptionGroup.vue'
 import ButtonOption from './ButtonOption.vue'
 import { useStateStore } from '../stores/state'
 import { ArrowUturnLeftIcon, ArrowUturnRightIcon, TrashIcon, PencilIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'

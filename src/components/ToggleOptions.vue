@@ -1,16 +1,16 @@
 <template>
-  <form @submit.prevent="" class="p-2 border-r last:border-0" :class="{
+  <OptionGroup :class="{
     'bg-gray-100': invertedColor,
     'bg-white': !invertedColor
   }">
-    <div class="flex gap-2 h-full">
-      <slot></slot>
-    </div>
-  </form>
+    <slot></slot>
+  </OptionGroup>
 </template>
 
 <script setup>
+import OptionGroup from "./OptionGroup.vue"
+
 defineProps({
-  invertedColor: Boolean
+  invertedColor: Boolean,
 })
 </script>

@@ -8,7 +8,9 @@
     </div>
     <div class="w-full">
       <div class="w-full h-full flex relative">
-        <ButtonOption name="Delete" @click="selectionStore.deleteLine"><TrashIcon/></ButtonOption>
+        <OptionGroup>
+          <ButtonOption name="Delete" @click="selectionStore.deleteLine"><TrashIcon/></ButtonOption>
+        </OptionGroup>
         <ToggleOptions>
           <ToggleOptionRadio group="selection-tileset" value="default" name="Arrows" v-model:activeItem="selectionStore.line.tileset">
             <div class="-mx-2 size-5 flex">
@@ -32,6 +34,7 @@
 import ToggleOptions from './ToggleOptions.vue'
 import ToggleOptionRadio from './ToggleOptionRadio.vue'
 import ButtonOption from './ButtonOption.vue'
+import OptionGroup from './OptionGroup.vue'
 import { useSelectionStore } from '../stores/selection'
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { ref, watch } from 'vue'
