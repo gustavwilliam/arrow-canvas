@@ -1,6 +1,6 @@
 <template>
   <div class="absolute bottom-5 left-1/2 overflow-hidden -translate-x-1/2 bg-white border rounded-lg shadow-md z-50">
-    <ToggleOptions v-show="tool==='draw'" :invertedColor="true">
+    <ToggleOptions v-show="stateStore.tool==='draw'" :invertedColor="true">
       <ToggleOptionRadio :invertedColor="true" group="tileset" value="default" name="Arrows" v-model:activeItem="stateStore.tileset">
         <div class="-mx-2 size-5 flex">
           <img src="/tilesets/default/start-rr.svg" alt="Tileset start">
@@ -16,8 +16,8 @@
     </ToggleOptions>
     <div class="w-full h-full flex relative">
       <ToggleOptions>
-        <ToggleOptionRadio group="tool" value="draw" name="Draw" v-model:activeItem="tool"><PencilIcon /></ToggleOptionRadio>
-        <ToggleOptionRadio group="tool" value="select" name="Select" v-model:activeItem="tool"><CursorArrowRaysIcon /></ToggleOptionRadio>
+        <ToggleOptionRadio group="tool" value="draw" name="Draw" v-model:activeItem="stateStore.tool"><PencilIcon /></ToggleOptionRadio>
+        <ToggleOptionRadio group="tool" value="select" name="Select" v-model:activeItem="stateStore.tool"><CursorArrowRaysIcon /></ToggleOptionRadio>
       </ToggleOptions>
       <OptionGroup>
         <ButtonOption name="Undo" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ButtonOption>
@@ -39,5 +39,4 @@ import { useStateStore } from '../stores/state'
 import { ArrowUturnLeftIcon, ArrowUturnRightIcon, TrashIcon, PencilIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
 
 const stateStore = useStateStore()
-const tool = stateStore.getTool()
 </script>

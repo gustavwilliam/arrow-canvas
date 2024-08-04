@@ -1,8 +1,8 @@
 <template>
   <div v-if="selectionStore.line" class="absolute inset-0 bg-gray-200 opacity-70 z-30"></div>
   <div class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none" :class="{
-    'hover:cursor-crosshair': stateStore.getTool().value === 'draw',
-    'hover:cursor-default': stateStore.getTool().value === 'select',
+    'hover:cursor-crosshair': stateStore.tool.value === 'draw',
+    'hover:cursor-default': stateStore.tool.value === 'select',
   }">
     <CanvasSquare
       v-for="(_, i) in 70"
@@ -70,16 +70,19 @@ const selectLine = (point) => {
 }
 
 function handleMouseDown(point) {
-  if (stateStore.getTool().value === 'draw') {
+  console.log('handleMouseDown', point)
+  console.log('stateStore.tool', stateStore.tool)
+
+  if (stateStore.tool === 'draw') {
     stateStore.addLineFromPoint(point)
   }
-  if (stateStore.getTool().value === 'select') {
+  if (stateStore.tool === 'select') {
     selectLine(point)
   }
 }
 
 function handleMouseOver(point) {
-  if (stateStore.getTool() === 'select') return
+  if (stateStore.tool.value === 'select') return
 
   const lastLine = stateStore.lastLine()
   if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
