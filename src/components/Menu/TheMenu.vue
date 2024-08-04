@@ -5,16 +5,12 @@
       <h1>Arrows</h1>
     </div>
     <div class="flex flex-row h-full">
-      <MenuGroup>
-        <MenuButton name="Save"><FolderIcon/></MenuButton>
-        <MenuButton name="Save"><FolderIcon/></MenuButton>
-      </MenuGroup>
       <MenuGroup v-if="selectionStore.hasSelection">
         <div class="flex items-center h-full">
           1 item selected
         </div>
       </MenuGroup>
-      <MenuGroup>
+      <MenuGroup v-if="!selectionStore.hasSelection">
         <TheDropdown name="Tileset">
           <button class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border bg-gray-50 hover:bg-gray-100 hover:disabled:bg-inherit disabled:text-gray-300">
             <TheTilesetDisplay :name="stateStore.tileset"></TheTilesetDisplay>
@@ -29,6 +25,24 @@
           </DropdownContent>
         </TheDropdown>
       </MenuGroup>
+      <MenuGroup v-if="selectionStore.hasSelection">
+        <TheDropdown name="Tileset">
+          <button class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border bg-gray-50 hover:bg-gray-100 hover:disabled:bg-inherit disabled:text-gray-300">
+            <TheTilesetDisplay :name="selectionStore.line.tileset"></TheTilesetDisplay>
+          </button>
+          <DropdownContent>
+            <DropdownItem group="tileset" value="arrows" name="Arrows" v-model:activeItem="selectionStore.line.tileset">
+              <TheTilesetDisplay name="arrows"></TheTilesetDisplay>
+            </DropdownItem>
+            <DropdownItem group="tileset" value="lemoji" name="Lemoji" v-model:activeItem="selectionStore.line.tileset">
+              <TheTilesetDisplay name="lemoji"></TheTilesetDisplay>
+            </DropdownItem>
+          </DropdownContent>
+        </TheDropdown>
+      </MenuGroup>
+      <MenuGroup v-if="selectionStore.hasSelection">
+        <MenuButton name="Delete" :onClick="selectionStore.deleteLine"><TrashIcon /></MenuButton>
+      </MenuGroup>
     </div>
   </div>
 </template>
@@ -39,7 +53,7 @@ import MenuButton from "./MenuButton.vue";
 import TheDropdown from "../Dropdown/TheDropdown.vue";
 import DropdownContent from "../Dropdown/DropdownContent.vue";
 import DropdownItem from "../Dropdown/DropdownItem.vue";
-import { FolderIcon } from "@heroicons/vue/20/solid";
+import { TrashIcon } from "@heroicons/vue/20/solid";
 import { useStateStore } from "../../stores/state";
 import { useSelectionStore } from "../../stores/selection";
 import TheTilesetDisplay from "../TheTilesetDisplay.vue";
