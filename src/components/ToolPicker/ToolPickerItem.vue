@@ -22,6 +22,5 @@
 
 <script setup>
 defineProps(["group", "value"])
-
 const activeItem = defineModel("activeItem")
 </script>

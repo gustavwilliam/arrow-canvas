@@ -1,9 +1,11 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useSelectionStore = defineStore("selection", () => {
   const line = ref(null);
   const point = ref(null);
+
+  const hasSelection = computed(() => line.value || point.value);
 
   function deleteLine() {
     line.value.points.length = 0;
@@ -15,5 +17,5 @@ export const useSelectionStore = defineStore("selection", () => {
     point.value = null;
   }
 
-  return { line, point, deleteLine, clearSelection };
+  return { line, point, deleteLine, clearSelection, hasSelection };
 });

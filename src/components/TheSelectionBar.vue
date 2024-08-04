@@ -12,7 +12,7 @@
           <ButtonOption name="Delete" @click="selectionStore.deleteLine"><TrashIcon/></ButtonOption>
         </OptionGroup>
         <ToggleOptions>
-          <ToggleOptionRadio group="selection-tileset" value="default" name="Arrows" v-model:activeItem="selectionStore.line.tileset">
+          <ToggleOptionRadio group="selection-tileset" value="arrows" name="Arrows" v-model:activeItem="selectionStore.line.tileset">
             <div class="-mx-2 size-5 flex">
               <img src="/tilesets/default/start-rr.svg" alt="Tileset start">
               <img src="/tilesets/default/end-ll.svg" alt="Tileset end">

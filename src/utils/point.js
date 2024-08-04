@@ -15,7 +15,7 @@ class Point {
     this.y = y;
     this.before = before; // Previous point in line
     this.after = after; // Next point in line
-    this.tileset = "default";
+    this.tileset = "arrows";
   }
 
   equals(point) {

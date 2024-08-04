@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       translate: {
-        "connector-default": "11%",
+        "connector-arrows": "11%",
         "connector-lemoji": "25%",
       },
     },

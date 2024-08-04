@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center px-2 w-full md:w-14 md:flex-col md:h-full bg-white border-r shadow-sm z-50">
+  <div class="flex flex-row items-center px-2 w-full md:w-14 md:flex-col md:h-full bg-white border-r shadow-sm z-40">
     <ToolPickerGroup>
       <ToolPickerItem group="tool" value="draw" v-model:activeItem="stateStore.tool"><PencilIcon /></ToolPickerItem>
       <ToolPickerItem group="tool" value="select" v-model:activeItem="stateStore.tool"><CursorArrowRippleIcon /></ToolPickerItem>

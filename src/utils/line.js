@@ -1,5 +1,5 @@
 class Line {
-  constructor(points, tileset = "default") {
+  constructor(points, tileset = "arrows") {
     this.points = points;
     this._tileset = tileset;
     this.setPointRelations();

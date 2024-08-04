@@ -5,7 +5,7 @@ import Point from "../utils/point";
 import { useSelectionStore } from "./selection";
 
 export const useStateStore = defineStore("state", () => {
-  const tileset = ref("default");
+  const tileset = ref("arrows");
   const selectionStore = useSelectionStore();
   const history = reactive([
     [], // No lines at start
@@ -39,11 +39,8 @@ export const useStateStore = defineStore("state", () => {
     historyIndex.value = 0;
   }
 
-  function addLineFromPoint(point, lineTileset = null) {
-    const line = new Line(
-      [new Point(point.x, point.y)],
-      lineTileset || tileset.value
-    );
+  function addLineFromPoint(point) {
+    const line = new Line([new Point(point.x, point.y)], tileset.value);
     addLine(line);
   }
 
