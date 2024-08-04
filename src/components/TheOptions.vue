@@ -19,8 +19,9 @@
         <ToggleOptionRadio group="tool" value="draw" name="Draw" v-model:activeItem="tool"><PencilIcon /></ToggleOptionRadio>
         <ToggleOptionRadio group="tool" value="select" name="Select" v-model:activeItem="tool"><CursorArrowRaysIcon /></ToggleOptionRadio>
       </ToggleOptions>
-      <ButtonOption name="Undo" @click="emit('undo')"><ArrowUturnLeftIcon /></ButtonOption>
-      <ButtonOption name="Clear" @click="emit('clearCanvas')"><TrashIcon /></ButtonOption>
+      <ButtonOption name="Undo" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ButtonOption>
+      <ButtonOption name="Redo" @click="stateStore.redo" :disabled="!stateStore.canRedo"><ArrowUturnRightIcon /></ButtonOption>
+      <ButtonOption name="Clear" @click="stateStore.clearCanvas"><TrashIcon /></ButtonOption>
     </div>
   </div>
 </template>
@@ -30,9 +31,8 @@ import ToggleOptions from './ToggleOptions.vue'
 import ToggleOptionRadio from './ToggleOptionRadio.vue'
 import ButtonOption from './ButtonOption.vue'
 import { useStateStore } from '../stores/state'
-import { ArrowUturnLeftIcon, TrashIcon, PencilIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
+import { ArrowUturnLeftIcon, ArrowUturnRightIcon, TrashIcon, PencilIcon, CursorArrowRaysIcon } from '@heroicons/vue/24/outline'
 
-const emit = defineEmits(["clearCanvas", "undo"])
 const stateStore = useStateStore()
 const tool = stateStore.getTool()
 </script>

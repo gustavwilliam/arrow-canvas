@@ -37,6 +37,13 @@ class Line {
     this._tileset = tileset;
     this.setPointTilesets();
   }
+
+  clone() {
+    return new Line(
+      this.points.map((point) => point.clone()),
+      this.tileset
+    );
+  }
 }
 
 export default Line;

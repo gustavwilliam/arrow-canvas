@@ -2,7 +2,6 @@
   <TheCanvas />
   <TheOptions
     @clearCanvas="clearCanvas"
-    @undo="undo"
   />
   <TheSelectionBar v-if="selectionStore.line"/>
 </template>
@@ -21,9 +20,5 @@ const stateStore = useStateStore()
 
 const clearCanvas = () => {
   stateStore.clearLines()
-}
-
-const undo = () => {
-  stateStore.lines.pop()
 }
 </script>

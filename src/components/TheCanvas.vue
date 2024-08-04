@@ -40,7 +40,7 @@ const updateCols = () => {
 }
 
 const _getPossibleSelections = (point) => {
-  const lines = stateStore.lines?.toReversed()  // Reverse to get the topmost line
+  const lines = stateStore.currentLines()?.toReversed()  // Reverse to get the topmost line
     .filter(line => line.intersects(point))
   return lines || []
 }
@@ -81,17 +81,16 @@ function handleMouseDown(point) {
 function handleMouseOver(point) {
   if (stateStore.getTool() === 'select') return
 
-  const lastLine = stateStore.lines[stateStore.lines.length - 1]
+  const lastLine = stateStore.lastLine()
   if (lastLine && lastLine.points.length > 0 && lastLine.points[lastLine.points.length - 1].equals(point)) {
     // If new point is the same as last point in last line in lines, ignore
     return
   }
   if (lastLine && lastLine.points.length > 0 && !lastLine.points[lastLine.points.length - 1].isAdjacent(point)) {
     // If last point in last line is more than one square away, create a new line
-    console.log(lastLine)
     stateStore.addLineFromPoint(point)
     return
   }
-  stateStore.lastLine().addPoint(new Point(point.x, point.y))
+  stateStore.addPointToLastLine(point);
 }
 </script>

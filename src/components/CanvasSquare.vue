@@ -45,9 +45,9 @@ const refId = computed(() => `square-${positionPoint.value.x}-${positionPoint.va
 
 const intersectingLines = computed(() => {
   const intersecting = []
-  stateStore.lines.forEach(line => {
+  stateStore.currentLines().forEach(line => {
     const points = line.points.filter(p => p.equals(positionPoint.value))
-    points.forEach(point => {
+    points.forEach(point => { 
       intersecting.push([point, line])
     })
   })

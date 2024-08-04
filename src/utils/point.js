@@ -98,6 +98,10 @@ class Point {
       return `-translate-x-connector-${this.tileset} -translate-y-connector-${this.tileset}`;
     }
   }
+
+  clone() {
+    return new Point(this.x, this.y);
+  }
 }
 
 export default Point;
