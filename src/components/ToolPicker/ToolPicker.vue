@@ -5,7 +5,7 @@
       <ToolPickerItem v-tooltip="'Select tool (V)'"  v-shortkey="['v']" @shortkey="stateStore.tool.value='select'" group="tool" value="select" v-model:activeItem="stateStore.tool"><CursorArrowRippleIcon /></ToolPickerItem>
     </ToolPickerGroup>
     <ToolPickerGroup>
-      <ToolPickerButton v-tooltip="'Clear canvas'" @click="stateStore.clearCanvas"><TrashIcon /></ToolPickerButton>
+      <ToolPickerButton v-tooltip="'Clear canvas (CTRL+BACKSPACE)'" v-shortkey="{mac: ['meta', 'backspace'], windows: ['ctrl', 'backspace']}" @shortkey="stateStore.clearCanvas" @click="stateStore.clearCanvas"><TrashIcon /></ToolPickerButton>
     </ToolPickerGroup>
     <ToolPickerGroup>
       <ToolPickerButton v-tooltip="'Undo (CTRL+Z)'" v-shortkey="{mac: ['meta', 'z'], windows: ['ctrl', 'z']}" @shortkey="stateStore.undo" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ToolPickerButton>
