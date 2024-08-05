@@ -8,6 +8,7 @@ export const useSelectionStore = defineStore("selection", () => {
   const hasSelection = computed(() => line.value || point.value);
 
   function deleteLine() {
+    if (!line.value) return;
     line.value.points.length = 0;
     clearSelection();
   }

@@ -20,7 +20,7 @@
           </DropdownContent>
         </TheDropdown>
       </MenuGroup>
-      <MenuSection v-if="stateStore.tool.value === 'select'">
+      <MenuSection v-if="stateStore.tool.value === 'select'" v-shortkey="['backspace']" @shortkey="selectionStore.deleteLine">
         <div class="flex items-center h-full mr-1">
           {{ selectionStore.hasSelection ? '1' : 'No' }} item selected
         </div>

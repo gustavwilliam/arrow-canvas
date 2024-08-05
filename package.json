@@ -21,7 +21,8 @@
     "radix-vue": "^1.9.2",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue3-shortkey": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.1.0",
