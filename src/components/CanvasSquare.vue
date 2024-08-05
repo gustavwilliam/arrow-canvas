@@ -26,9 +26,9 @@
 
 <script setup>
 import { computed, onMounted } from "vue"
-import Point from "../utils/point"
-import { useSelectionStore } from '../stores/selection'
-import { useStateStore } from '../stores/state'
+import Point from "@/utils/point"
+import { useSelectionStore } from '@/stores/selection'
+import { useStateStore } from '@/stores/state'
 
 const props = defineProps(["index", "cols"])
 const emit = defineEmits(["squareMouseDown", "squareMouseOver"])

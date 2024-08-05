@@ -18,7 +18,7 @@
 import ToolPickerItem from './ToolPickerItem.vue'
 import ToolPickerGroup from './ToolPickerGroup.vue'
 import ToolPickerButton from './ToolPickerButton.vue'
-import { useStateStore } from '../../stores/state'
+import { useStateStore } from '@/stores/state'
 import { PencilIcon, CursorArrowRippleIcon, ArrowUturnLeftIcon, ArrowUturnRightIcon, TrashIcon } from '@heroicons/vue/16/solid'
 
 const stateStore = useStateStore()

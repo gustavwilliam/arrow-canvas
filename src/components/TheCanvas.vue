@@ -16,12 +16,12 @@
 </template>
 
 <script setup>
-import CanvasSquare from './CanvasSquare.vue'
-import Point from '../utils/point'
-import Line from '../utils/line'
+import CanvasSquare from '@/components/CanvasSquare.vue'
+import Point from '@/utils/point'
+import Line from '@/utils/line'
 import { onMounted, ref, reactive, watch } from 'vue'
-import { useSelectionStore } from '../stores/selection'
-import { useStateStore } from '../stores/state'
+import { useSelectionStore } from '@/stores/selection'
+import { useStateStore } from '@/stores/state'
 
 const cols = ref()
 const selectionStore = useSelectionStore()

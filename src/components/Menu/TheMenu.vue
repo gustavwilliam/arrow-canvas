@@ -47,13 +47,13 @@
 import MenuSection from "./MenuSection.vue";
 import MenuGroup from "./MenuGroup.vue";
 import MenuButton from "./MenuButton.vue";
-import TheDropdown from "../Dropdown/TheDropdown.vue";
-import DropdownContent from "../Dropdown/DropdownContent.vue";
-import DropdownItem from "../Dropdown/DropdownItem.vue";
+import TheDropdown from "@/components/Dropdown/TheDropdown.vue";
+import DropdownContent from "@/components/Dropdown/DropdownContent.vue";
+import DropdownItem from "@/components/Dropdown/DropdownItem.vue";
+import { useStateStore } from "@/stores/state";
+import { useSelectionStore } from "@/stores/selection";
+import TheTilesetDisplay from "@/components/TheTilesetDisplay.vue";
 import { TrashIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
-import { useStateStore } from "../../stores/state";
-import { useSelectionStore } from "../../stores/selection";
-import TheTilesetDisplay from "../TheTilesetDisplay.vue";
 
 const stateStore = useStateStore();
 const selectionStore = useSelectionStore();

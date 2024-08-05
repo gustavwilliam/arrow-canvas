@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, reactive, ref } from "vue";
-import Line from "../utils/line";
-import Point from "../utils/point";
+import Line from "@/utils/line";
+import Point from "@/utils/point";
 import { useSelectionStore } from "./selection";
 
 export const useStateStore = defineStore("state", () => {

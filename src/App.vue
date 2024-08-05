@@ -9,13 +9,13 @@
 </template>
 
 <script setup>
-import TheCanvas from './components/TheCanvas.vue'
-import TheMenu from './components/Menu/TheMenu.vue'
-import ToolPicker from './components/ToolPicker/ToolPicker.vue'
-import { useSelectionStore } from './stores/selection'
+import TheCanvas from '@/components/TheCanvas.vue'
+import TheMenu from '@/components/Menu/TheMenu.vue'
+import ToolPicker from '@/components/ToolPicker/ToolPicker.vue'
+import { useSelectionStore } from '@/stores/selection'
 import { useStateStore } from './stores/state'
-import Line from './utils/line'
-import Point from './utils/point'
+import Line from '@/utils/line'
+import Point from '@/utils/point'
 
 const selectionStore = useSelectionStore()
 const stateStore = useStateStore()
