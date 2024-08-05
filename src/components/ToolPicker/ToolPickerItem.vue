@@ -2,8 +2,8 @@
   <label
     class="rounded-md w-full aspect-square flex items-center justify-center p-1"
     :class="{
-      'bg-gray-200 hover:bg-gray-200': activeItem === value,
-      'hover:bg-gray-200': activeItem !== value,
+      'bg-gray-200 hover:bg-gray-200': activeItem.value === value,
+      'hover:bg-gray-200': activeItem.value !== value,
     }"
   >
     <input

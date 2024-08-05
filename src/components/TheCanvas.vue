@@ -70,13 +70,10 @@ const selectLine = (point) => {
 }
 
 function handleMouseDown(point) {
-  console.log('handleMouseDown', point)
-  console.log('stateStore.tool', stateStore.tool)
-
-  if (stateStore.tool === 'draw') {
+  if (stateStore.tool.value === 'draw') {
     stateStore.addLineFromPoint(point)
   }
-  if (stateStore.tool === 'select') {
+  if (stateStore.tool.value === 'select') {
     selectLine(point)
   }
 }

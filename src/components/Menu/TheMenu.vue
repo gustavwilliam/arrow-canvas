@@ -1,11 +1,11 @@
 <template>
   <div class="bg-white border-b w-full flex items-center gap-2 p-2 z-50 shadow-md">
-    <div class="uppercase p-3">
+    <div class="uppercase py-3">
       <h1 class="font-bold -mb-2">Godi.se</h1>
       <h1>Arrows</h1>
     </div>
     <div class="flex flex-row h-full">
-      <MenuGroup v-if="stateStore.tool === 'draw'">
+      <MenuGroup v-if="stateStore.tool.value === 'draw'">
         <TheDropdown name="Tileset">
           <button class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border bg-gray-50 hover:bg-gray-100 hover:disabled:bg-inherit disabled:text-gray-300">
             <TheTilesetDisplay :name="stateStore.tileset"></TheTilesetDisplay>
@@ -20,7 +20,7 @@
           </DropdownContent>
         </TheDropdown>
       </MenuGroup>
-      <MenuSection v-if="stateStore.tool === 'select'">
+      <MenuSection v-if="stateStore.tool.value === 'select'">
         <div class="flex items-center h-full mr-1">
           {{ selectionStore.hasSelection ? '1' : 'No' }} item selected
         </div>

@@ -12,7 +12,7 @@ export const useStateStore = defineStore("state", () => {
   const historyIndex = ref(0); // Current index in history (end of history=0, incrementing toward first moment in history)
   const _tool = ref("draw");
   const tool = computed({
-    get: () => _tool.value,
+    get: () => _tool,
     set: (value) => {
       _tool.value = value;
       if (value === "draw") {
@@ -20,14 +20,7 @@ export const useStateStore = defineStore("state", () => {
       }
     },
   });
-  const _tileset = ref("arrows");
-  const tileset = computed({
-    get: () => _tileset.value,
-    set: (value) => {
-      _tileset.value = value;
-      tool.value = "draw";
-    },
-  });
+  const tileset = ref("arrows");
 
   function currentLines() {
     return history[history.length - historyIndex.value - 1];
