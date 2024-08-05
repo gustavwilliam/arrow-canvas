@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white border-b w-full flex items-center gap-2 p-2 z-50 shadow-md">
-    <div class="uppercase py-3">
+    <div class="uppercase py-2">
       <h1 class="font-bold -mb-2">Godi.se</h1>
       <h1>Arrows</h1>
     </div>
