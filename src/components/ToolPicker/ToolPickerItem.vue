@@ -14,7 +14,7 @@
       :value="value"
       v-model="activeItem"
     >
-    <div class="w-full h-full select-none" draggable="false">
+    <div class="w-full select-none" draggable="false">
       <slot></slot>
     </div>
   </label>
