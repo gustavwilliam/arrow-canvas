@@ -1,5 +1,5 @@
 <template>
-  <span class="mr-1">{{ name }}</span>
+  <span class="mr-1" v-if="name">{{ name }}</span>
   <div @click="toggle" class="relative">
     <slot name="toggler">
     </slot>
