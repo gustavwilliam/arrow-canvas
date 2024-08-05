@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-row items-center px-2 w-full md:w-14 md:flex-col md:h-full bg-white border-r shadow-sm z-40">
     <ToolPickerGroup>
-      <ToolPickerItem group="tool" value="draw" v-model:activeItem="stateStore.tool"><PencilIcon /></ToolPickerItem>
-      <ToolPickerItem group="tool" value="select" v-model:activeItem="stateStore.tool"><CursorArrowRippleIcon /></ToolPickerItem>
+      <ToolPickerItem v-tooltip="'Pen tool'" group="tool" value="draw" v-model:activeItem="stateStore.tool"><PencilIcon /></ToolPickerItem>
+      <ToolPickerItem v-tooltip="'Select tool'" group="tool" value="select" v-model:activeItem="stateStore.tool"><CursorArrowRippleIcon /></ToolPickerItem>
     </ToolPickerGroup>
     <ToolPickerGroup>
-      <ToolPickerButton @click="stateStore.clearCanvas"><TrashIcon /></ToolPickerButton>
+      <ToolPickerButton v-tooltip="'Clear canvas'" @click="stateStore.clearCanvas"><TrashIcon /></ToolPickerButton>
     </ToolPickerGroup>
     <ToolPickerGroup>
-      <ToolPickerButton @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ToolPickerButton>
-      <ToolPickerButton @click="stateStore.redo" :disabled="!stateStore.canRedo"><ArrowUturnRightIcon /></ToolPickerButton>
+      <ToolPickerButton v-tooltip="'Undo'" @click="stateStore.undo" :disabled="!stateStore.canUndo"><ArrowUturnLeftIcon /></ToolPickerButton>
+      <ToolPickerButton v-tooltip="'Undo'" @click="stateStore.redo" :disabled="!stateStore.canRedo"><ArrowUturnRightIcon /></ToolPickerButton>
     </ToolPickerGroup>
   </div>
 </template>
