@@ -12,6 +12,7 @@ module.exports = {
       translate: {
         "connector-arrows": "11%",
         "connector-lemoji": "25%",
+        "connector-pinia": "25%",
       },
     },
   },
