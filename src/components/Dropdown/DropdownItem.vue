@@ -14,7 +14,7 @@
       type="radio"
       :value="value"
       v-model="activeItem"
-    >
+    />
     <div class="select-none w-full" draggable="false">
       <slot></slot>
     </div>
@@ -24,8 +24,8 @@
 <script setup>
 import { inject, watch } from "vue";
 
-const props = defineProps(["group", "value", "name"])
-const activeItem = defineModel("activeItem")
+const props = defineProps(["group", "value", "name"]);
+const activeItem = defineModel("activeItem");
 const closeDropdown = inject("closeDropdown");
 
 watch(activeItem, () => closeDropdown());

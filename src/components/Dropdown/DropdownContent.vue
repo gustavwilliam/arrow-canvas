@@ -1,10 +1,11 @@
 <template>
-<transition name="dropdown-content">
+  <transition name="dropdown-content">
     <div
       v-show="toggleState"
       class="origin-top-left absolute w-32 left-0 mt-1 bg-white rounded-lg border py-2"
-    > <!-- v-if breaks v-model inside DropdownItem, hence v-show -->
-      <slot/>
+    >
+      <!-- v-if breaks v-model inside DropdownItem, hence v-show -->
+      <slot />
     </div>
   </transition>
 </template>

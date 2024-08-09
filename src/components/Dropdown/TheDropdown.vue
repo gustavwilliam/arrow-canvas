@@ -1,9 +1,8 @@
 <template>
   <span class="mr-1" v-if="name">{{ name }}</span>
   <div @click="toggle" class="relative">
-    <slot name="toggler">
-    </slot>
-    <slot/>
+    <slot name="toggler"> </slot>
+    <slot />
   </div>
 </template>
 
@@ -14,7 +13,7 @@ const active = ref(false);
 
 defineProps(["name"]);
 provide("toggleState", active);
-provide("closeDropdown", () => active.value = false);
+provide("closeDropdown", () => (active.value = false));
 
-const toggle = () => active.value = !active.value;
+const toggle = () => (active.value = !active.value);
 </script>
