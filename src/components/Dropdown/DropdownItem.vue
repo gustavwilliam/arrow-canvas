@@ -2,8 +2,8 @@
   <label
     class="flex items-center cursor-pointer p-2"
     :class="{
-      'bg-gray-100': activeItem === value,
-      'hover:bg-gray-100': activeItem !== value,
+      'bg-gray-100 dark:bg-gray-800': activeItem === value,
+      'hover:bg-gray-100 dark:hover:bg-gray-800': activeItem !== value,
     }"
     :for="`item-${group}-${value}`"
   >

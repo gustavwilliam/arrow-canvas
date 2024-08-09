@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white border-b w-full flex items-center gap-2 p-2 z-50 shadow-md"
+    class="bg-white dark:bg-gray-900 border-b dark:border-b-gray-800 w-full flex items-center gap-2 p-2 z-50 shadow-md dark:shadow-gray-800"
   >
     <div class="uppercase py-2">
       <h1 class="font-bold -mb-2">Godi.se</h1>
@@ -10,7 +10,7 @@
       <MenuGroup v-if="stateStore.tool.value === 'draw'">
         <TheDropdown name="Tileset">
           <button
-            class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border bg-gray-50 hover:bg-gray-100 hover:disabled:bg-inherit disabled:text-gray-300"
+            class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 hover:dark:bg-gray-700 hover:disabled:bg-inherit disabled:text-gray-300 dark:disabled:text-gray-700"
           >
             <TheTilesetDisplay :name="stateStore.tileset"></TheTilesetDisplay>
           </button>
@@ -52,7 +52,7 @@
         </div>
         <TheDropdown v-if="selectionStore.hasSelection">
           <button
-            class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border bg-gray-50 hover:bg-gray-100 hover:disabled:bg-inherit disabled:text-gray-300"
+            class="select-none px-2 py-2 flex flex-row gap-1 rounded-md items-center justify-center border dark:border-gray-600 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 hover:disabled:bg-inherit disabled:text-gray-300 dark:disabled:text-gray-400"
           >
             <TheTilesetDisplay
               :name="selectionStore.line.tileset"

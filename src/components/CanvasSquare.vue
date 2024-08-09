@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="absolute inset-1 bg-gray-50 rounded-lg z-10">
+    <div class="absolute inset-1 bg-gray-50 dark:bg-gray-700 rounded-lg z-10">
       <!-- Visual box -->
     </div>
     <div

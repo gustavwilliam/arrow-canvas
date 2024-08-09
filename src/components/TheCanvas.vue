@@ -1,10 +1,10 @@
 <template>
   <div
     v-if="selectionStore.line"
-    class="absolute inset-0 bg-gray-200 opacity-70 z-30"
+    class="absolute inset-0 bg-gray-200 dark:bg-gray-800 opacity-70 z-30"
   ></div>
   <div
-    class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none"
+    class="w-full grid grid-cols-5 md:grid-cols-7 lg:grid-cols-10 select-none dark:bg-gray-800"
     :class="{
       'hover:cursor-crosshair': stateStore.tool.value === 'draw',
       'hover:cursor-default': stateStore.tool.value === 'select',
